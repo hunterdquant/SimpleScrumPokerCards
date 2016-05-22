@@ -8,6 +8,7 @@ import android.widget.GridView;
 import android.widget.ImageView;
 
 import com.hunterquant.simplescrumpokercards.R;
+import com.hunterquant.simplescrumpokercards.resources.CardResources;
 
 /**
  * Created by hunter on 5/22/16.
@@ -16,24 +17,13 @@ public class CardAdapter extends BaseAdapter {
 
     private Context context;
 
-    private int[] cardIds = {
-            R.drawable.card0,
-            R.drawable.card1,
-            R.drawable.card2,
-            R.drawable.card3,
-            R.drawable.card5,
-            R.drawable.card8,
-            R.drawable.card13,
-            R.drawable.card21
-    };
-
     public CardAdapter(Context context) {
         this.context = context;
     }
 
     @Override
     public int getCount() {
-        return cardIds.length;
+        return CardResources.cardIds.length;
     }
 
     @Override
@@ -43,7 +33,7 @@ public class CardAdapter extends BaseAdapter {
 
     @Override
     public long getItemId(int position) {
-        return cardIds[position];
+        return CardResources.cardIds[position];
     }
 
     @Override
@@ -58,7 +48,7 @@ public class CardAdapter extends BaseAdapter {
             imageView = (ImageView) convertView;
         }
 
-        imageView.setImageResource(cardIds[position]);
+        imageView.setImageResource(CardResources.cardIds[position]);
         return imageView;
     }
 }
