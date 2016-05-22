@@ -1,14 +1,13 @@
 package com.hunterquant.simplescrumpokercards.activities;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.GridView;
-import android.widget.Toast;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
+import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 
 import com.hunterquant.simplescrumpokercards.R;
-import com.hunterquant.simplescrumpokercards.adapters.CardAdapter;
+import com.hunterquant.simplescrumpokercards.fragments.CardGridFragment;
 
 public class SSPKActivity extends AppCompatActivity {
 
@@ -16,16 +15,12 @@ public class SSPKActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sspk);
+        Log.d("HERE", "Calling grid frag");
+        CardGridFragment cgf = new CardGridFragment();
 
-        GridView gridview = (GridView) findViewById(R.id.gridview);
-        gridview.setAdapter(new CardAdapter(this));
-
-        gridview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            public void onItemClick(AdapterView<?> parent, View v,
-                                    int position, long id) {
-                Toast.makeText(SSPKActivity.this, "" + position,
-                        Toast.LENGTH_SHORT).show();
-            }
-        });
+        FragmentManager manager = getSupportFragmentManager();
+        FragmentTransaction transaction = manager.beginTransaction();
+        transaction.replace(R.id.content, cgf);
+        transaction.commit();
     }
 }
